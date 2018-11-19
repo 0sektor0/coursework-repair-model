@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="./css/main.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <script async src="./js/index.js"></script>
+
+    <title>Модель ремонтников</title>
+</head>
+
+<body>
+    <section id="cover">
+        <div id="cover-caption">
+            <div id="container" class="container">
+                <div class="row text-white">
+                    <div class="col-sm-10 offset-sm-1 text-center">
+                        <div>
+                            <h1 class="display-3 h-text">Модель ремонтников</h1>
+                            <img src="./img/vars.jpg">
+
+                            <div>
+                                <h1 class="display-3 h-text">Введите параметры модели</h1>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">среднее время наработки на отказ tno:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputTno" value="600">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">среднее время ремонта t0:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputT0" value="8">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">число компьютеров N:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputN" value="25">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">число ремонтников С:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputC" value="2">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">потери за час поломки S:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputS" value="1000">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">зарплата ремонтника Si:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputSr" value="250">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" onclick="startCalculations()" class="btn btn-default process-button">Рассчитать</button>
+                            <div id="resultDiv" hidden="true">
+                            </div>
+
+                            <p><a href="./html/about.html">О программе Григорьев Е.А. ИУ5-11М</a></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
