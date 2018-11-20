@@ -135,17 +135,18 @@ function printResult(result) {
         resultDiv.removeChild(resultDiv.firstChild);
 
     resultDiv.hidden = false;
+    let count = document.getElementById("inputCount").value;
 
-    resultDiv.appendChild(createResultField(`вероятность отказа 0 компьютеров P0: ${result.P0.toFixed(4)}`));
-    resultDiv.appendChild(createResultField(`Среднее количество компьютеров в очереди на ремонт Q: ${result.Q.toFixed(4)}`));
-    resultDiv.appendChild(createResultField(`Среднее количество сломаных компьютеров L: ${result.L.toFixed(4)}`));
-    resultDiv.appendChild(createResultField(`Среднее количество компьютеров на ремонтеU: ${result.U.toFixed(4)}`));
-    resultDiv.appendChild(createResultField(`Коэффициент загрузки одного специалиста Ro0: ${result.Ro0.toFixed(4)}`));
-    resultDiv.appendChild(createResultField(`Среднее количество исправных компьютеров n: ${result.N.toFixed(4)}`));
-    resultDiv.appendChild(createResultField(`коэффициент загрузки компьютера Re: ${result.Re.toFixed(4)}`));
-    resultDiv.appendChild(createResultField(`Среднее время нахождения компьютера в очереди на ремонт W: ${result.W.toFixed(4)} ч`));
-    resultDiv.appendChild(createResultField(`Среднее время прибывания компьютера в неисправном состоянии Tp: ${result.Tp.toFixed(4)} ч`));
-    resultDiv.appendChild(createResultField(`Режим работы службы ремонта Re/Ro: ${result.ReRo.toFixed(4)}`));
-    resultDiv.appendChild(createResultField(`Убытки Y: ${result.Y.toFixed(4)}`));
-    resultDiv.appendChild(createResultField(`Среднее время цикла для компьютера Tc: ${result.Tc.toFixed(4)} ч`));
+    resultDiv.appendChild(createResultField(`вероятность отказа 0 компьютеров P0: ${result.P0.toFixed(count)}`));
+    resultDiv.appendChild(createResultField(`Среднее количество компьютеров в очереди на ремонт Q: ${result.Q.toFixed(count)}`));
+    resultDiv.appendChild(createResultField(`Среднее количество сломаных компьютеров L: ${result.L.toFixed(count)}`));
+    resultDiv.appendChild(createResultField(`Среднее количество компьютеров на ремонтеU: ${result.U.toFixed(count)}`));
+    resultDiv.appendChild(createResultField(`Коэффициент загрузки одного специалиста Ro0: ${result.Ro0.toFixed(count)}`));
+    resultDiv.appendChild(createResultField(`Среднее количество исправных компьютеров n: ${result.N.toFixed(count)}`));
+    resultDiv.appendChild(createResultField(`коэффициент загрузки компьютера Re: ${result.Re.toFixed(count)}`));
+    resultDiv.appendChild(createResultField(`Среднее время нахождения компьютера в очереди на ремонт W: ${result.W.toFixed(count)} ч`));
+    resultDiv.appendChild(createResultField(`Среднее время прибывания компьютера в неисправном состоянии Tp: ${result.Tp.toFixed(count)} ч`));
+    resultDiv.appendChild(createResultField(`Режим работы службы ремонта Re/Ro: ${result.ReRo.toFixed(count)}`));
+    resultDiv.appendChild(createResultField(`Убытки Y: ${result.Y.toFixed(count)}`));
+    resultDiv.appendChild(createResultField(`Среднее время цикла для компьютера Tc: ${result.Tc.toFixed(count)} ч`));
 }
