@@ -26,18 +26,18 @@ export default class RepairModel {
         this._mun0 = 1 / tno;
         this._mu0 = 1 / t0;
         this._xsi = this._mun0 / this._mu0;
-        this._pk = new Array<number>(n+1);
+        this._pk = new Array<number>(n + 1);
 
         this.CalcPk();
     }
 
     public static Factorial(num: number): number {
-        let factorial : number = 1
+        let factorial: number = 1
 
-        if(num == 0)
+        if (num == 0)
             return factorial;
 
-        for(let i: number = 1; i <= num; i++)
+        for (let i: number = 1; i <= num; i++)
             factorial *= i;
 
         return factorial;
@@ -45,25 +45,31 @@ export default class RepairModel {
 
     private CalcPk() {
         let sum1: number = 0;
-        for(let k: number = 0; k <= this._c; k++) {
-            let devidend: number = RepairModel.Factorial(this._n) * this._xsi**k;
+        for (let k: number = 0; k <= this._c; k++) {
+            let devidend: number = RepairModel.Factorial(this._n) * this._xsi ** k;
             let devider: number = RepairModel.Factorial(k) * RepairModel.Factorial(this._n - k);
-            sum1 +=  devidend / devider;
+            sum1 += devidend / devider;
         }
 
         let sum2: number = 0;
-        for(let k: number = this._c + 1; k <= this._n; k++) {
-            let devidend: number = RepairModel.Factorial(this._n) * this._xsi**k;
-            let devider: number = this._c**(k - this._c) * RepairModel.Factorial(this._c) * RepairModel.Factorial(this._n - k);
-            sum2 +=  devidend / devider;
+        for (let k: number = this._c + 1; k <= this._n; k++) {
+            let devidend: number = RepairModel.Factorial(this._n) * this._xsi ** k;
+            let devider: number = this._c ** (k - this._c) * RepairModel.Factorial(this._c) * RepairModel.Factorial(this._n - k);
+            sum2 += devidend / devider;
         }
 
-        this._pk[0] = (sum1 + sum2)**-1;
+        this._pk[0] = (sum1 + sum2) ** -1;
 
-        for(let k: number = 1; k <= this._n; k++) {
-            let devidend: number = RepairModel.Factorial(this._n) * this._xsi**k;
-            let devider: number = RepairModel.Factorial(k) * RepairModel.Factorial(this._n - k);
-            this._pk[k] =  devidend / devider * this._pk[0];
+        for (let k: number = 1; k <= this._n; k++) {
+            let devidend: number = RepairModel.Factorial(this._n) * this._xsi ** k;
+            let devider: number = 0;
+
+            if (k <= this._c)
+                devider = RepairModel.Factorial(k) * RepairModel.Factorial(this._n - k);
+            else
+                devider = this._c ** (k - this._c) * RepairModel.Factorial(this._c) * RepairModel.Factorial(this._n - k);
+
+            this._pk[k] = devidend / devider * this._pk[0];
         }
     }
 
@@ -89,14 +95,14 @@ export default class RepairModel {
     private CalculateQ(result: ModelResult) {
         result.Q = 0;
 
-        for(let k = this._c; k <= this._n; k++)
+        for (let k = this._c; k <= this._n; k++)
             result.Q += (k - this._c) * this._pk[k];
     }
 
     private CalculateL(result: ModelResult) {
         result.L = 0;
 
-        for(let k = 1; k <= this._n; k++)
+        for (let k = 1; k <= this._n; k++)
             result.L += k * this._pk[k];
     }
 }   

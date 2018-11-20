@@ -10,5 +10,5 @@ function CalculateRpairModel(tno: number, t0: number, n: number, c: number, s: n
     return result;
 }
 
-let result = CalculateRpairModel(600, 8, 25, 2, 1000, 250);
+let result = CalculateRpairModel(800, 8, 25, 2, 1000, 250);
 console.log("");
