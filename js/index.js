@@ -1,7 +1,3 @@
-"use strict";
-
-
-
 var ModelResult = /** @class */ (function () {
     function ModelResult() {
         this.P0 = 0;
@@ -59,7 +55,11 @@ var RepairModel = /** @class */ (function () {
         this._pk[0] = Math.pow((sum1 + sum2), -1);
         for (var k = 1; k <= this._n; k++) {
             var devidend = RepairModel.Factorial(this._n) * Math.pow(this._xsi, k);
-            var devider = RepairModel.Factorial(k) * RepairModel.Factorial(this._n - k);
+            var devider = 0;
+            if (k <= this._c)
+                devider = RepairModel.Factorial(k) * RepairModel.Factorial(this._n - k);
+            else
+                devider = Math.pow(this._c, (k - this._c)) * RepairModel.Factorial(this._c) * RepairModel.Factorial(this._n - k);
             this._pk[k] = devidend / devider * this._pk[0];
         }
     };
@@ -102,17 +102,16 @@ function CalculateRpairModel(tno, t0, n, c, s, sr) {
 
 function readInput() {
     let input = {
-        Tno: document.getElementById("inputTno").value,
-        T0: document.getElementById("inputT0").value,
-        N: document.getElementById("inputN").value,
-        C: document.getElementById("inputC").value,
-        S: document.getElementById("inputS").value,
-        Sr: document.getElementById("inputSr").value,
+        Tno: parseFloat(document.getElementById("inputTno").value.replace(",", ".")),
+        T0: parseFloat(document.getElementById("inputT0").value.replace(",", ".")),
+        N: parseFloat(document.getElementById("inputN").value.replace(",", ".")),
+        C: parseFloat(document.getElementById("inputC").value.replace(",", ".")),
+        S: parseFloat(document.getElementById("inputS").value.replace(",", ".")),
+        Sr: parseFloat(document.getElementById("inputSr").value.replace(",", ".")),
     }
 
     return input;
 }
-
 
 function startCalculations() {
     let i = readInput();
@@ -146,7 +145,7 @@ function printResult(result) {
     resultDiv.appendChild(createResultField(`коэффициент загрузки компьютера Re: ${result.Re.toFixed(count)}`));
     resultDiv.appendChild(createResultField(`Среднее время нахождения компьютера в очереди на ремонт W: ${result.W.toFixed(count)} ч`));
     resultDiv.appendChild(createResultField(`Среднее время прибывания компьютера в неисправном состоянии Tp: ${result.Tp.toFixed(count)} ч`));
+    resultDiv.appendChild(createResultField(`Среднее время цикла для компьютера Tc: ${result.Tc.toFixed(count)} ч`));
     resultDiv.appendChild(createResultField(`Режим работы службы ремонта Re/Ro: ${result.ReRo.toFixed(count)}`));
     resultDiv.appendChild(createResultField(`Убытки Y: ${result.Y.toFixed(count)}`));
-    resultDiv.appendChild(createResultField(`Среднее время цикла для компьютера Tc: ${result.Tc.toFixed(count)} ч`));
 }
